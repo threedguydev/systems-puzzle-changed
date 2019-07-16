@@ -1,0 +1,46 @@
+
+Fri, July 12
+- installing docker on windows 10, and then trying to get docker working from WSL Ubuntu 18.04
+  on my windows 10 laptop
+   after several attempts, found some articles on doing this, but all resulting in various failures
+- getting python installed in WSL
+   lot of packages nessarily need to be loaded in my WSL Ubuntu to compile app.py locally
+   additional pakages for python3, etc., etc.
+Sun, July 14
+- got docker working from WSL (took 2 days to understand all this new technology)
+   but things still failing, as guide to get docker WSL working recommended differnt way to mount c,d drives
+   something in flask requires knowing about /mnt
+   worked around this problem by creating symbolic links to c,d, but then docker started failing
+   required legacy settings of docker , along with alternate symbolic links
+- abandoning WSL as i couldn't be sure that problems i am seeing are due to my docker WSL or due to systems-puzzle (SPZ)
+   remembering i had a old lenovo laptop running Ubuntu
+- more time getting docker configures on Ubuntu laptop
+- need to get flask tutorial going, as want to know if i am setting up docker properly. 
+  Now looking at docker & flask tutorials. Tutorials on web seem similar to SPZ.
+- tutorials working. wish i knew what all this Dockerfile and docker-compose.yaml is really doing.
+- turning on debug on Flask, and running app.py locally, i finally see the query form on localhost in browser, 
+   but crashes on submit of form, really long stacktrace, seems not connecting to database
+- crash at submit of form, stacktrace pointing to commit(), still some issue with database
+Mon, Jul 15
+- using python logging to get some understanding of app flow. 
+- found issue with port setting 80:8080 in docker-compose.yaml, this appears to be backward from tutorials
+  setting of port 5001 in app.py (this settings really should be exernalized from running of app)
+- how does the docker-compose run /bin/bash -c "import database; int_db()" work ? how does this continue with python app.py ?
+  putting in some getpid() debug into the code, seems pid is same for the docker-compse run and the pyton app.py
+  how is this ?  hmm. Why put this code into command line, seperately from app.py ?
+- something failing as "database" not found .  works locally, but not in docker. 
+  debugging this -- trying to get the docker-compose run to give me more info, any way to get an "ls" of the container dirctory ?
+  doing docker down , to clean up docker, needs somthing more. ok, now have script start.sh to start from
+  a clean docker .  docker prune.  docker build ?
+  looking at what really is Dockerfile and docker-compose.yml and how the multiple container orchastration works
+Tue, Jul 16
+- redirect url failing, trying to debug.  redirct URL is : http://localhost%2Clocalhost:8080/success
+  what is this garbage after the first localhost string ?
+  something fishy with python redirect(url_for('success'))
+  how to get python logging back from container ?
+  also, need to figure our all of port mapping stuff to access db container from  python app runnying locally
+  also, how to run python debugger to container
+- ok, time to look at git diffs, and commit
+
+
+
