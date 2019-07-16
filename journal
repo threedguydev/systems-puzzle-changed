@@ -41,6 +41,7 @@ Tue, Jul 16
   also, need to figure our all of port mapping stuff to access db container from  python app runnying locally
   also, how to run python debugger to container
 - ok, time to look at git diffs, and commit
+  private repository at : https://github.com/threedguydev/systems-puzzle-mod.git
 
 
 
